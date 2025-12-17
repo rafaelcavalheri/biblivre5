@@ -4,8 +4,10 @@ ENV DEBIAN_FRONTEND=noninteractive \
     TZ=America/Sao_Paulo \
     JAVA_TOOL_OPTIONS="-Duser.timezone=America/Sao_Paulo -Duser.country=BR -Duser.language=pt"
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends tzdata && \
+RUN echo "deb http://archive.debian.org/debian stretch main" > /etc/apt/sources.list && \
+    echo "deb http://archive.debian.org/debian-security stretch/updates main" >> /etc/apt/sources.list && \
+    apt-get -o Acquire::Check-Valid-Until=false update && \
+    apt-get install -y --allow-unauthenticated --no-install-recommends tzdata && \
     ln -fs /usr/share/zoneinfo/$TZ /etc/localtime && \
     echo "$TZ" > /etc/timezone && \
     dpkg-reconfigure -f noninteractive tzdata && \

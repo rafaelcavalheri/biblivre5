@@ -1,15 +1,24 @@
 version: "3.9"
 services:
   biblivre:
-    image: faelcavalheri/biblivre5-docker:latest
+    build: .
+    image: biblivre-local:latest
     container_name: biblivre
     ports:
       - "9050:8080"
     environment:
+      - POSTGRES_USER=biblivre
+      - POSTGRES_PASSWORD=abracadabra
+      - POSTGRES_DB=biblivre4
       - TZ=America/Sao_Paulo
       - JAVA_TOOL_OPTIONS=-Duser.timezone=GMT-03:00 -Duser.country=BR -Duser.language=pt
+    entrypoint: ["/bin/bash", "/start_biblivre.sh"]
     volumes:
+      - ./start_biblivre.sh:/start_biblivre.sh
       - ./setenv.sh:/usr/local/tomcat/bin/setenv.sh:ro
-      - /dados/biblivre-db:/var/lib/postgresql/9.6/main
+      - biblivre-db:/var/lib/postgresql/9.6/main
       - ./webapps:/usr/local/tomcat/webapps
     restart: unless-stopped
+
+volumes:
+  biblivre-db:
