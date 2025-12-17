@@ -1,6 +1,6 @@
 # Biblivre5 Docker
 
-Este projeto configura o Biblivre5 usando Docker com volumes persistentes.
+Este projeto configura o Biblivre5 v5.1.31 usando Docker com volumes persistentes, ja corrigido o bug no horario de empréstimos com 1h a menos da versão oficial
 
 ## Componentes
 
