@@ -14,8 +14,6 @@ services:
       - JAVA_TOOL_OPTIONS=-Duser.timezone=GMT-03:00 -Duser.country=BR -Duser.language=pt
     entrypoint: ["/bin/bash", "/start_biblivre.sh"]
     volumes:
-      - ./start_biblivre.sh:/start_biblivre.sh
-      - ./setenv.sh:/usr/local/tomcat/bin/setenv.sh:ro
       - biblivre-db:/var/lib/postgresql/9.6/main
       - ./webapps:/usr/local/tomcat/webapps
     restart: unless-stopped
