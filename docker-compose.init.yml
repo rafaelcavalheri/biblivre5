@@ -1,7 +1,0 @@
-services:
-  biblivre:
-    volumes:
-      - biblivredb:/var/lib/postgresql/9.6/main
-volumes:
-  biblivredb:
-    driver: local
